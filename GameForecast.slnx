@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Microservices/" />
+  <Folder Name="/src/Microservices/Match/">
+    <Project Path="src/Microservices/Match/Match.API/Match.API.csproj" Id="2a45a567-ef56-4c57-a22c-42d3ea90d5c2" />
+    <Project Path="src/Microservices/Match/Match.Application/Match.Application.csproj" Id="3da52451-d8c8-4ddd-95bd-d0d5f1af792d" />
+    <Project Path="src/Microservices/Match/Match.Domain/Match.Domain.csproj" Id="c3db6c27-2825-4557-8f97-9d70cc7127f9" />
+    <Project Path="src/Microservices/Match/Match.Infrastructure/Match.Infrastructure.csproj" Id="df991d15-2881-48b9-b581-226c742d59c4" />
+  </Folder>
+</Solution>
