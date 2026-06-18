@@ -2,7 +2,9 @@
   <Folder Name="/Solution Items/">
     <File Path="docker-compose.yml" />
   </Folder>
-  <Folder Name="/src/" />
+  <Folder Name="/src/">
+    <Project Path="src/BuildingBlocks/BuildingBlocks.csproj" />
+  </Folder>
   <Folder Name="/src/Microservices/" />
   <Folder Name="/src/Microservices/Match/">
     <Project Path="src/Microservices/Match/Match.API/Match.API.csproj" Id="2a45a567-ef56-4c57-a22c-42d3ea90d5c2" />
