@@ -1,4 +1,6 @@
-﻿using Match.Infrastructure.Persistence;
+﻿using Match.Application.Abstractions.Persistence;
+using Match.Infrastructure.Persistence;
+using Match.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,11 @@ public static class InfrastructureServiceRegistration
         IConfiguration configuration)
     {
         services.AddDbContext<MatchDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("MatchDB")));
+
+        services.AddScoped<IMatchRepository, MatchRepository>();
+        services.AddScoped<ITeamRepository, TeamRepository>();
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MatchDbContext>());
 
         return services;
     }
