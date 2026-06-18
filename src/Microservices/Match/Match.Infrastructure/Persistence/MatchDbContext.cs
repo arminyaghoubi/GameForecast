@@ -1,9 +1,10 @@
-﻿using Match.Domain.Entities;
+﻿using Match.Application.Abstractions.Persistence;
+using Match.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Match.Infrastructure.Persistence;
 
-public class MatchDbContext : DbContext
+public class MatchDbContext : DbContext, IUnitOfWork
 {
     public DbSet<Team> Teams { get; set; }
     public DbSet<Domain.Entities.Match> Matches { get; set; }

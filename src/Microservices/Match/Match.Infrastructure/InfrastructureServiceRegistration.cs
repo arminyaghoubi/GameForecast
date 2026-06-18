@@ -18,6 +18,8 @@ public static class InfrastructureServiceRegistration
         services.AddScoped<IMatchRepository, MatchRepository>();
         services.AddScoped<ITeamRepository, TeamRepository>();
 
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MatchDbContext>());
+
         return services;
     }
 }
