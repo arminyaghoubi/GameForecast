@@ -9,4 +9,6 @@ public interface ITeamRepository
     Task<IReadOnlyList<Team>> GetAllAsync(int pageNumber, int pageSize, CancellationToken cancellation);
 
     Task<int> GetCountAsync(CancellationToken cancellation);
+
+    Task<bool> ExistsAsync(int id, CancellationToken);
 }

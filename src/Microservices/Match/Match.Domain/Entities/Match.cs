@@ -1,4 +1,6 @@
-﻿namespace Match.Domain.Entities;
+﻿using Match.Domain.Exceptions;
+
+namespace Match.Domain.Entities;
 
 public class Match
 {
@@ -10,7 +12,7 @@ public class Match
         DateTime matchTime)
     {
         if (homeTeamId == awayTeamId)
-            throw new ArgumentException("Home and away teams cannot be the same.", nameof(awayTeamId));
+            throw new DomainException("Home and away teams cannot be the same.");
 
         HomeTeamId = homeTeamId;
         AwayTeamId = awayTeamId;
@@ -36,7 +38,7 @@ public class Match
     public void Start()
     {
         if (Status != MatchStatus.Scheduled)
-            throw new InvalidOperationException("Only scheduled matches can be started.");
+            throw new DomainException("Only scheduled matches can be started.");
 
         Status = MatchStatus.InProgress;
     }
@@ -44,10 +46,10 @@ public class Match
     public void SetScore(short homeScore, short awayScore)
     {
         if (Status is not MatchStatus.InProgress and not MatchStatus.Scheduled)
-            throw new InvalidOperationException("Cannot update score when match is not in progress or scheduled.");
+            throw new DomainException("Cannot update score when match is not in progress or scheduled.");
 
         if (homeScore < 0 || awayScore < 0)
-            throw new ArgumentOutOfRangeException("Scores cannot be negative.");
+            throw new DomainException("Scores cannot be negative.");
 
         HomeTeamScore = homeScore;
         AwayTeamScore = awayScore;
@@ -56,10 +58,10 @@ public class Match
     public void Completed()
     {
         if (Status != MatchStatus.InProgress)
-            throw new InvalidOperationException("Only in progress matches can be completed.");
+            throw new DomainException("Only in progress matches can be completed.");
 
         if (HomeTeamScore is null || AwayTeamScore is null)
-            throw new InvalidOperationException("Cannot complete match without final score.");
+            throw new DomainException("Cannot complete match without final score.");
 
         Status = MatchStatus.Completed;
     }
@@ -67,7 +69,7 @@ public class Match
     public void Cancel()
     {
         if (Status == MatchStatus.Completed)
-            throw new InvalidOperationException("Completed match cannot be cancell");
+            throw new DomainException("Completed match cannot be cancell");
     }
 }
 
